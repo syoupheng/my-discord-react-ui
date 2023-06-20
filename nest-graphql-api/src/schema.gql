@@ -1,0 +1,62 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type FriendRequestParticipant {
+  id: Int!
+  username: String!
+}
+
+type FriendRequest {
+  sender: FriendRequestParticipant!
+  recipient: FriendRequestParticipant!
+}
+
+type AuthUser {
+  id: Int!
+  username: String!
+  email: String!
+  status: UserStatus!
+  phoneNumber: String
+  friendRequests: [FriendRequest!]!
+}
+
+enum UserStatus {
+  ONLINE
+  INACTIVE
+  DO_NOT_DISTURB
+  INVISIBLE
+}
+
+type LogoutResponse {
+  success: Boolean!
+}
+
+type Query {
+  me: AuthUser!
+}
+
+type Mutation {
+  login(loginUserInput: LoginUserInput!): AuthUser!
+  register(registerUserInput: RegisterUserInput!): AuthUser!
+  logout: LogoutResponse!
+  sendFriendRequest(friendTag: FriendTag!): FriendRequest!
+  deleteFriendRequest(senderId: Int!, recipientId: Int!): LogoutResponse!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+input RegisterUserInput {
+  username: String!
+  email: String!
+  password: String!
+  phoneNumber: String
+}
+
+input FriendTag {
+  id: Int!
+  username: String!
+}
