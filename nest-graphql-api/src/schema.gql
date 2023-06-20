@@ -1,0 +1,103 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Friend {
+  id: Int!
+  username: String!
+  status: UserStatus!
+}
+
+enum UserStatus {
+  ONLINE
+  INACTIVE
+  DO_NOT_DISTURB
+  INVISIBLE
+}
+
+type FriendRequest {
+  id: Int!
+  username: String!
+  requestStatus: FriendRequestStatus!
+}
+
+enum FriendRequestStatus {
+  RECEIVED
+  SENT
+}
+
+type ConversationMember {
+  id: Int!
+  username: String!
+}
+
+type PrivateConversation {
+  id: Int!
+  member: ConversationMember!
+}
+
+type AuthUser {
+  id: Int!
+  username: String!
+  email: String!
+  status: UserStatus!
+  phoneNumber: String
+  friendRequests: [FriendRequest!]!
+  friends: [Friend!]!
+  privateConversations: [PrivateConversation!]!
+}
+
+type SuccessResponse {
+  success: Boolean!
+}
+
+type Query {
+  me: AuthUser!
+}
+
+type Mutation {
+  hideConversation(conversationId: Int!): PrivateConversation!
+  showConversation(friendId: Int!): PrivateConversation!
+  editProfile(editProfileInput: EditProfileInput!): AuthUser!
+  addFriend(friendId: Int!): Friend!
+  deleteFriend(friendId: Int!): SuccessResponse!
+  sendFriendRequest(friendTag: FriendTag!): FriendRequest!
+  deleteFriendRequest(friendId: Int!): SuccessResponse!
+  ignoreFriendRequest(friendId: Int!): SuccessResponse!
+  login(loginUserInput: LoginUserInput!): AuthUser!
+  register(registerUserInput: RegisterUserInput!): AuthUser!
+  logout: SuccessResponse!
+}
+
+input EditProfileInput {
+  username: String
+  email: String
+  password: String
+  phoneNumber: String
+  status: UserStatus
+}
+
+input FriendTag {
+  id: Int!
+  username: String!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+input RegisterUserInput {
+  username: String!
+  email: String!
+  password: String!
+  phoneNumber: String
+}
+
+type Subscription {
+  friendRequestConfirmed(userId: Int!): Friend!
+  friendDeleted(userId: Int!): Int!
+  friendProfileChanged(userId: Int!): Friend!
+  friendRequestReceived(userId: Int!): FriendRequest!
+  friendRequestDeleted(userId: Int!): Int!
+}
