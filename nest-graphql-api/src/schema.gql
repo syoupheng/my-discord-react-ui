@@ -1,0 +1,54 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  username: String!
+  email: String!
+  status: UserStatus!
+  phoneNumber: String
+}
+
+enum UserStatus {
+  ONLINE
+  INACTIVE
+  DO_NOT_DISTURB
+  INVISIBLE
+}
+
+type AuthUser {
+  id: Int!
+  username: String!
+  email: String!
+  status: UserStatus!
+  phoneNumber: String
+}
+
+type LogoutResponse {
+  success: Boolean!
+}
+
+type Query {
+  users: [User!]!
+  user(id: Int!): User!
+  me: AuthUser!
+}
+
+type Mutation {
+  login(loginUserInput: LoginUserInput!): AuthUser!
+  register(registerUserInput: RegisterUserInput!): AuthUser!
+  logout: LogoutResponse!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+input RegisterUserInput {
+  username: String!
+  email: String!
+  password: String!
+  phoneNumber: String
+}
