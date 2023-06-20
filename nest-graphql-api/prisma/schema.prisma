@@ -1,0 +1,147 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                       Int                        @id @default(autoincrement())
+  username                 String
+  discriminator            String
+  email                    String                     @unique
+  status                   UserStatus                 @default(INVISIBLE)
+  password                 String
+  phoneNumber              String?
+  createdAt                DateTime                   @default(now())
+  friendRequestsSent       FriendRequest[]            @relation("friendRequestsSent")
+  friendRequestsReceived   FriendRequest[]            @relation("friendRequestsReceived")
+  isFriendsWith            FriendsWith[]              @relation("hasFriends")
+  hasFriends               FriendsWith[]              @relation("isFriendsWith")
+  channels                 MembersInChannels[]
+  messages                 Message[]
+  mentionedBy              MentionsOnMessages[]
+  newMessagesNotifications NewMessagesNotifications[]
+  chatGptRole              String?
+  avatarColor              String                     @default("#ef4444")
+
+  @@unique(fields: [username, discriminator], name: "userIdentifier")
+  @@map("users")
+}
+
+model FriendRequest {
+  sender      User     @relation(name: "friendRequestsSent", fields: [senderId], references: [id])
+  senderId    Int
+  recipient   User     @relation(name: "friendRequestsReceived", fields: [recipientId], references: [id])
+  recipientId Int
+  ignored     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@id([senderId, recipientId])
+  @@map("friend_requests")
+}
+
+model FriendsWith {
+  isFriendsWith   User         @relation(name: "isFriendsWith", fields: [isFriendsWithId], references: [id])
+  isFriendsWithId Int
+  hasFriends      User         @relation(name: "hasFriends", fields: [hasFriendsId], references: [id])
+  hasFriendsId    Int
+  status          FriendStatus @default(FRIENDS)
+  createdAt       DateTime     @default(now())
+
+  @@id([isFriendsWithId, hasFriendsId])
+  @@map("friends_with")
+}
+
+model Channel {
+  id          Int                 @id @default(autoincrement())
+  name        String?
+  createdAt   DateTime            @default(now())
+  members     MembersInChannels[]
+  messages    Message[]
+  type        ChannelType         @default(PRIVATE_CONVERSATION)
+  avatarColor String              @default("#45c46d")
+
+  @@map("channels")
+}
+
+model MembersInChannels {
+  channel   Channel  @relation(fields: [channelId], references: [id])
+  channelId Int
+  member    User     @relation(fields: [memberId], references: [id])
+  memberId  Int
+  joinedIn  DateTime @default(now())
+  hidden    Boolean  @default(false)
+
+  @@id([channelId, memberId])
+  @@map("members_in_channels")
+}
+
+model Message {
+  id           Int                        @id @default(autoincrement())
+  createdAt    DateTime                   @unique @default(now())
+  editedAt     DateTime?                  @updatedAt
+  content      String
+  author       User                       @relation(fields: [authorId], references: [id])
+  authorId     Int
+  channel      Channel                    @relation(fields: [channelId], references: [id])
+  channelId    Int
+  respondsToId Int?
+  respondsTo   Message?                   @relation("responseToMessage", fields: [respondsToId], references: [id])
+  responses    Message[]                  @relation("responseToMessage")
+  type         MessageType
+  mentions     MentionsOnMessages[]
+  pinned       Boolean                    @default(false)
+  notifiedTo   NewMessagesNotifications[]
+
+  @@map("messages")
+}
+
+model MentionsOnMessages {
+  message   Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  messageId Int
+  mention   User    @relation(fields: [mentionId], references: [id])
+  mentionId Int
+
+  @@id([messageId, mentionId])
+  @@map("mentions_on_messages")
+}
+
+model NewMessagesNotifications {
+  message   Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  messageId Int
+  user      User    @relation(fields: [userId], references: [id])
+  userId    Int
+
+  @@id([messageId, userId])
+  @@map("new_messages_notifications")
+}
+
+enum UserStatus {
+  ONLINE
+  INACTIVE
+  DO_NOT_DISTURB
+  INVISIBLE
+}
+
+enum FriendStatus {
+  FRIENDS
+  BLOCKED
+}
+
+enum ChannelType {
+  PRIVATE_CONVERSATION
+  PRIVATE_GROUP
+}
+
+enum MessageType {
+  NORMAL
+  NAME_CHANGE_NOTIFICATION
+  ARRIVAL_NOTIFICATION
+  LEAVE_NOTIFICATION
+}
