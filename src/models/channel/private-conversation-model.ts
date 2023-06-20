@@ -36,8 +36,8 @@ export class PrivateConversationModel implements ChannelModel {
   }
 
   get members(): readonly ChannelMemberFragment[] {
-    const { createdAt, username, id, avatarColor } = this.authUser;
-    return [this.conversation.member, { createdAt, username, id, avatarColor, __typename: "ChannelMember" }];
+    const { createdAt, username, id, avatarColor, discriminator } = this.authUser;
+    return [this.conversation.member, { createdAt, username, discriminator, id, avatarColor, __typename: "ChannelMember" }];
   }
 
   get avatarColor(): string {
