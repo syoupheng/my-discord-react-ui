@@ -1,0 +1,211 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthUser implements BaseUser {
+  avatarColor: String!
+  createdAt: DateTime!
+  email: String!
+  friendRequests: [FriendRequest!]!
+  friends: [Friend!]!
+  id: Int!
+  newMessagesNotifications: [Message!]!
+  phoneNumber: String
+  privateConversations: [PrivateConversation!]!
+  privateGroups: [PrivateGroup!]!
+  status: UserStatus!
+  username: String!
+}
+
+interface BaseMessage {
+  author: ChannelMember!
+  content: String!
+  id: Int!
+  mentions: [ChannelMember!]!
+}
+
+interface BaseUser {
+  avatarColor: String!
+  createdAt: DateTime!
+  id: Int!
+  username: String!
+}
+
+type ChannelMember implements BaseUser {
+  avatarColor: String!
+  createdAt: DateTime!
+  id: Int!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input EditNameInput {
+  groupId: Int!
+  name: String!
+}
+
+input EditProfileInput {
+  email: String
+  password: String
+  phoneNumber: String
+  status: UserStatus
+  username: String
+}
+
+type Friend implements BaseUser {
+  avatarColor: String!
+  createdAt: DateTime!
+  id: Int!
+  status: UserStatus!
+  username: String!
+}
+
+type FriendRequest implements BaseUser {
+  avatarColor: String!
+  createdAt: DateTime!
+  id: Int!
+  requestStatus: FriendRequestStatus!
+  username: String!
+}
+
+type FriendRequestConfirmedPayload {
+  newConversation: PrivateConversation!
+  newFriend: Friend!
+}
+
+enum FriendRequestStatus {
+  RECEIVED
+  SENT
+}
+
+input FriendTag {
+  id: Int!
+  username: String!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+type Message implements BaseMessage {
+  author: ChannelMember!
+  channelId: Int!
+  content: String!
+  createdAt: DateTime!
+  editedAt: DateTime
+  id: Int!
+  mentions: [ChannelMember!]!
+  referencedMessage: ReferencedMessage
+  type: MessageType!
+}
+
+enum MessageType {
+  ARRIVAL_NOTIFICATION
+  LEAVE_NOTIFICATION
+  NAME_CHANGE_NOTIFICATION
+  NORMAL
+}
+
+type MessagesResponse {
+  cursor: DateTime
+  messages: [Message!]!
+}
+
+type Mutation {
+  addFriend(friendId: Int!): Friend!
+  addGroupMembers(groupId: Int!, membersIds: [Int!]!): PrivateGroup!
+  createGroup(membersIds: [Int!]!): PrivateGroup!
+  deleteFriend(friendId: Int!): SuccessResponse!
+  deleteFriendRequest(friendId: Int!): SuccessResponse!
+  deleteMessage(messageId: Int!): SuccessResponse!
+  editGroupName(editNameInput: EditNameInput!): PrivateGroup!
+  editProfile(editProfileInput: EditProfileInput!): AuthUser!
+  hideConversation(conversationId: Int!): PrivateConversation!
+  ignoreFriendRequest(friendId: Int!): SuccessResponse!
+  leaveGroup(groupId: Int!): PrivateGroup!
+  login(loginUserInput: LoginUserInput!): AuthUser!
+  logout: SuccessResponse!
+  markMessagesAsRead(messagesIds: [Int!]!): String!
+  register(registerUserInput: RegisterUserInput!): AuthUser!
+  sendFriendRequest(friendTag: FriendTag!): FriendRequest!
+  sendMessage(sendMessageInput: SendMessageInput!): Message!
+  showConversation(friendId: Int!): PrivateConversation!
+  typingMessage(channelId: Int!): String!
+}
+
+type PrivateConversation {
+  createdAt: DateTime!
+  id: Int!
+  member: ChannelMember!
+}
+
+type PrivateGroup {
+  avatarColor: String!
+  createdAt: DateTime!
+  id: Int!
+  members: [ChannelMember!]!
+  name: String!
+}
+
+type Query {
+  getMessages(channelId: Int!, cursor: String, limit: Int = 15): MessagesResponse!
+  me: AuthUser!
+}
+
+type ReferencedMessage implements BaseMessage {
+  author: ChannelMember!
+  content: String!
+  id: Int!
+  mentions: [ChannelMember!]!
+}
+
+input RegisterUserInput {
+  email: String!
+  password: String!
+  phoneNumber: String
+  username: String!
+}
+
+input SendMessageInput {
+  channelId: Int!
+  content: String!
+  respondsToId: Int
+}
+
+type Subscription {
+  friendDeleted(userId: Int!): Int!
+  friendProfileChanged(userId: Int!): Friend!
+  friendRequestConfirmed(userId: Int!): FriendRequestConfirmedPayload!
+  friendRequestDeleted(userId: Int!): Int!
+  friendRequestReceived(userId: Int!): FriendRequest!
+  messageDeleted(userId: Int!): Message!
+  messageReceived(userId: Int!): Message!
+  userTyping(userTypingInput: UserTypingInput!): TypingNotification!
+}
+
+type SuccessResponse {
+  success: Boolean!
+}
+
+type TypingNotification {
+  channelId: Int!
+  userId: Int!
+  username: String!
+}
+
+enum UserStatus {
+  DO_NOT_DISTURB
+  INACTIVE
+  INVISIBLE
+  ONLINE
+}
+
+input UserTypingInput {
+  channelId: Int
+  userId: Int!
+}
