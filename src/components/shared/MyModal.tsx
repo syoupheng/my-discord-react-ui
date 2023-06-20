@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import clsx from "clsx";
-import { ComponentProps, Fragment, PropsWithChildren, ReactNode, createContext, forwardRef } from "react";
+import { ComponentProps, Fragment, PropsWithChildren, createContext, forwardRef } from "react";
 
 type Props = ComponentProps<"div"> & {
   isOpen?: boolean;
