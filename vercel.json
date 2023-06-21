@@ -1,24 +1,8 @@
 {
-  "routes": [
+  "rewrites": [
     {
-      "src": "/",
-      "dest": "/"
-    },
-    {
-      "src": "/login",
-      "dest": "/"
-    },
-    {
-      "src": "/register",
-      "dest": "/"
-    },
-    {
-      "src": "/channels",
-      "dest": "/"
-    },
-    {
-      "src": "/channels/@me",
-      "dest": "/"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
