@@ -63,7 +63,7 @@ type ModalContentProps = PropsWithChildren & {
 
 MyModal.Content = ({ title, children, centered = false }: ModalContentProps) => {
   return (
-    <div className={clsx("px-4 pt-4 overflow-y-scroll overflow-x-hidden", centered && "text-center")}>
+    <div className={clsx("px-4 pt-4 overflow-hidden", centered && "text-center")}>
       <Dialog.Title className="text-white text-xl font-bold mb-3">{title}</Dialog.Title>
       <div className="mb-8 text-btw-base-sm text-secondary-light">{children}</div>
     </div>

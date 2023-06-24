@@ -34,7 +34,7 @@ const FriendsContent = ({ selectedTab, friendTabModel }: Props) => {
           {selectedTab && friendTabModel.listHeader} - {filteredFriendItems.length}
         </h2>
       </div>
-      <div className="relative overflow-y-scroll overflow-x-hidden pr-0 pb-2 mt-2 min-h-0 flex-auto scroll-container">
+      <div className="relative overflow-y-scroll overflow-x-hidden pr-0 pb-2 mt-2 min-h-0 flex-auto scroll-container big-scrollbar">
         <div ref={friendsListRef} className="absolute w-full h-full">
           {filteredFriendItems.length <= 0 ? (
             <EmptyFriends search friendTabModel={friendTabModel} />

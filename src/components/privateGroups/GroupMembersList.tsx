@@ -48,10 +48,10 @@ const GroupMembersList = forwardRef<HTMLDivElement, Props>(
               <span className="flex shrink-0 grow-0 basis-auto items-center relative max-w-full">
                 <div
                   className={`${
-                    isSelected(id) ? "border-grey-hov" : "border-primary-dark-400"
+                    isSelected(id) ? " border-blue" : "border-primary-dark-400"
                   } h-[22px] w-[22px] shrink-0 grow-0 basis-auto border rounded-md flex items-center justify-center text-grey-hov`}
                 >
-                  {isSelected(id) && <ValidateIcon size={18} />}
+                  {isSelected(id) && <ValidateIcon variant="blue" size={18} />}
                 </div>
               </span>
             </div>

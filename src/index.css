@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: "ABC Ginto Normal", Whitney, "Helvetica Neue", Helvetica, Arial,
-      sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Noto Sans", "ABC Ginto Normal", Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
     height: 100vh;
     --secondary-color: #2f3137;
     --tertiary-color: #1f2123;
@@ -65,6 +69,15 @@ select:-webkit-autofill:focus {
   background: var(--tertiary-color);
 }
 
+.small-scroll-container {
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+}
+
+.small-scroll-container:hover {
+  scrollbar-color: var(--tertiary-color) transparent;
+}
+
 .scroll-container::-webkit-scrollbar {
   width: 16px;
 }
@@ -88,4 +101,22 @@ select:-webkit-autofill:focus {
 .scroll-container::-webkit-scrollbar-track {
   background-color: var(--secondary-color);
   opacity: 0.6;
+}
+
+.big-scrollbar {
+  scrollbar-width: auto;
+  scrollbar-color: var(--tertiary-color) var(--secondary-color);
+}
+
+.small-scrollbar {
+  scrollbar-color: var(--tertiary-color) transparent;
+  scrollbar-width: thin;
+}
+
+.invisible-scrollbar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.invisible-scrollbar {
+  scrollbar-width: none;
 }
