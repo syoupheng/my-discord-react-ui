@@ -112,7 +112,7 @@ const ChatMessageInput = () => {
       <form className="relative shrink-0 px-4 mt-[-8px]">
         <div ref={ref} className="mb-6 w-full indent-0 rounded-lg bg-primary relative">
           <MessageResponseIndicator />
-          <div className="overflow-x-hidden overflow-y-scroll bg-primary-dark-560 max-h-[50vh] rounded-lg" style={{ scrollbarWidth: "none" }}>
+          <div className="overflow-x-hidden overflow-y-scroll bg-primary-dark-560 max-h-[50vh] rounded-lg invisible-scrollbar" style={{ scrollbarWidth: "none" }}>
             <div className="pl-4 flex">
               <ChatSlateEditor isEmpty={slateEditorIsEmpty(value)} handleKeyDown={handleKeyDown} decorate={slateDecorator} slateValue={value} />
               <TooltipWrapper tooltipTxt="Coming soon !">

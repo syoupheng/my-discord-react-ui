@@ -44,7 +44,7 @@ const ChatContent = () => {
           )}
           <div
             ref={scrollContainerRef}
-            className="absolute inset-0 overflow-y-scroll overflow-x-hidden min-h-0 scroll-container"
+            className="absolute inset-0 overflow-y-scroll overflow-x-hidden min-h-0 scroll-container big-scrollbar"
             style={{ overflowAnchor: "none" }}
           >
             <LoadingMessagesSkeleton className="absolute inset-0" show={loadingMessages && messages.length === 0} />

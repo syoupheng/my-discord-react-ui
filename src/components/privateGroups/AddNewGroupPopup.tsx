@@ -56,7 +56,7 @@ const AddNewGroupPopup = ({ closePopover, currentMembersIds = [], groupId = null
         </div>
         <div className="flex-auto mt-5 flex flex-nowrap justify-start items-stretch">
           <div className="flex-1 flex rounded bg-tertiary">
-            <div className="overflow-x-hidden overflow-y-scroll relative flex-auto flex flex-wrap p-[1px]">
+            <div className="overflow-x-hidden overflow-y-scroll relative flex-auto flex flex-wrap p-[1px] small-scrollbar invisible-scrollbar">
               <MemberTagList selectedMembersIds={selectedMembersIds} friends={friends} handleClickMemberTag={handleClickMemberTag} />
               <GroupSearchBar
                 ref={searchInputRef}
