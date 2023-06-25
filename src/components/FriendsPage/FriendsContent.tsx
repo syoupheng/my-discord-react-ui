@@ -30,7 +30,7 @@ const FriendsContent = ({ selectedTab, friendTabModel }: Props) => {
     <>
       <FriendsSearchbar search={search} handleChange={setSearch} />
       <div>
-        <h2 className="mt-4 mr-5 mb-2 ml-[30px] flex-auto text-h-secondary whitespace-nowrap overflow-hidden uppercase text-xs font-medium">
+        <h2 className="mt-4 mr-5 mb-2 ml-[30px] flex-auto text-h-secondary whitespace-nowrap overflow-hidden uppercase text-xs font-semibold">
           {selectedTab && friendTabModel.listHeader} - {filteredFriendItems.length}
         </h2>
       </div>

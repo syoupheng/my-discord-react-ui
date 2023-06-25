@@ -22,7 +22,7 @@ const MembersSidebar = ({ members }: Props) => {
       leaveTo="w-0"
     >
       <div className="overflow-x-hidden overflow-y-scroll pr-0 bg-secondary w-60 pb-5 grow-0 shrink-0 basis-auto h-auto min-h-0 small-scroll-container absolute inset-0">
-        <h2 className="pt-6 pr-2 pl-4 h-10 text-ellipsis whitespace-nowrap overflow-hidden uppercase text-xs font-medium text-channels-default">
+        <h2 className="pt-6 pr-2 pl-4 h-10 text-ellipsis whitespace-nowrap overflow-hidden uppercase text-xs font-semibold text-channels-default">
           Membres-{members.length}
         </h2>
         {members.map((member) => (

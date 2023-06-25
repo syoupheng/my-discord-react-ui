@@ -13,7 +13,7 @@ const MessageRoomListHeader = () => {
       offset={5}
       className="flex pt-4 pr-2 pb-1 pl-4 h-10 text-ellipsis overflow-hidden uppercase font-medium text-channels-default text-xs group mt-3"
     >
-      <span className="flex-1 group-hover:text-secondary-light cursor-default">Messages privés</span>
+      <span className="flex-1 group-hover:text-secondary-light cursor-default font-semibold">Messages privés</span>
       <TooltipWrapper
         tooltipTxt="Créer un MP"
         size="sm"

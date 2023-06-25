@@ -4,7 +4,7 @@ import useTooltip from "@/hooks/ui/useTooltip";
 type Props = {
   nbMembers?: number | null;
   label: string;
-}
+};
 
 const MessageItemLabel = ({ nbMembers = null, label }: Props) => {
   const { handleHover, setIsShown, containerRef, isShown, position } = useTooltip();
@@ -15,7 +15,7 @@ const MessageItemLabel = ({ nbMembers = null, label }: Props) => {
         onMouseOver={() => !!containerRef.current && containerRef.current?.offsetWidth >= 140 && handleHover()}
         onMouseLeave={() => setIsShown(false)}
         ref={containerRef}
-        className="text-btw-base-sm whitespace-nowrap text-ellipsis overflow-hidden"
+        className=" text-sm font-semibold whitespace-nowrap text-ellipsis overflow-hidden"
       >
         {label}
       </div>

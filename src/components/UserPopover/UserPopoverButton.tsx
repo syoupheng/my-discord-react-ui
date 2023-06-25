@@ -17,7 +17,7 @@ const UserPopoverButton = ({ avatarColor, status, username, discriminator }: Pro
       <div className="whitespace-nowrap overflow-hidden text-btw-sm-xs">
         <div className="text-white font-bold overflow-hidden text-ellipsis text-left">{username}</div>
         <div className="text-h-secondary text-left overflow-hidden max-h-[18px]">
-          <div className="transition-transform duration-300 group-hover:-translate-y-1/2">
+          <div className="transition-transform duration-300 group-hover:-translate-y-1/2 text-xs">
             <div>{userStatusModel.label}</div>
             <div>#{discriminator}</div>
           </div>
