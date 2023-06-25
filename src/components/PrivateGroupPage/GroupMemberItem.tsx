@@ -28,7 +28,7 @@ const GroupMemberItem = ({ member }: Props) => {
     >
       <div className="flex items-center rounded px-2 h-[42px]">
         <UserAvatar avatarColor={member.avatarColor} status={userStatus} className="mr-3" />
-        <div className="leading-5 whitespace-nowrap text-ellipsis overflow-hidden flex-auto min-w-0">{member.username}</div>
+        <div className="leading-5 whitespace-nowrap text-ellipsis overflow-hidden flex-auto min-w-0 font-medium text-sm">{member.username}</div>
       </div>
     </TooltipWrapper>
   );

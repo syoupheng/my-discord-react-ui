@@ -35,11 +35,11 @@ const GroupMembersList = forwardRef<HTMLDivElement, Props>(
             >
               <UserAvatar avatarColor={avatarColor} status={status} />
               <div className="flex-auto whitespace-nowrap text-ellipsis overflow-hidden mx-[10px] flex flex-nowrap justify-start items-baseline">
-                <strong className="mr-1 text-sm text-secondary-light font-normal">{username}</strong>
+                <strong className="mr-1 text-sm text-secondary-light font-medium">{username}</strong>
                 <div
                   className={`${
                     hoveredIndex === idx ? "text-secondary-light" : "text-h-secondary"
-                  } opacity-50 flex justify-start items-center overflow-hidden leading-[1.1] text-sm font-medium`}
+                  } opacity-50 flex justify-start items-center overflow-hidden leading-[1.1] text-btw-sm-xs`}
                 >
                   <span className="block overflow-hidden text-ellipsis whitespace-nowrap flex-initial">{username}</span>
                   <span>#{discriminator}</span>
