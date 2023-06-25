@@ -45,7 +45,8 @@ const WelcomeModal = () => {
                     icon={<BiBot size={24} />}
                     description={
                       <>
-                        Tu peux dès à présent discuter avec tes amis ! Leurs réponses sont générées par <b>ChatGPT</b> !
+                        Tu peux dès à présent discuter avec tes amis ! Leurs réponses sont générées par <b>ChatGPT</b> ! N'hésite pas à les mentionner
+                        directement avec <b>@pseudo</b> pour être sur d'avoir une réponse.
                       </>
                     }
                   />
