@@ -1,24 +1,10 @@
 import UserAvatar from "@/components/shared/UserAvatar";
 import { FriendFragment, FriendRequestFragment, FriendRequestStatus, UserStatus } from "@/gql/graphql";
+import { userStatusFactory } from "@/models/user-status/user-status.factory";
 
 type Props = {
   friend?: FriendFragment;
   friendRequest?: FriendRequestFragment;
-};
-
-const userStatusMap: Record<UserStatus, { desc: string }> = {
-  ONLINE: {
-    desc: "En ligne",
-  },
-  INACTIVE: {
-    desc: "Inactif",
-  },
-  DO_NOT_DISTURB: {
-    desc: "Ne pas déranger",
-  },
-  INVISIBLE: {
-    desc: "Hors ligne",
-  },
 };
 
 const friendRequestMap: Record<FriendRequestStatus, string> = {
@@ -27,6 +13,7 @@ const friendRequestMap: Record<FriendRequestStatus, string> = {
 };
 
 const FriendItemTag = ({ friend, friendRequest }: Props) => {
+  const userStatusModel = userStatusFactory(friend?.status ?? "INVISIBLE");
   return (
     <div className="flex overflow-hidden">
       <UserAvatar avatarColor={friend?.avatarColor ?? friendRequest?.avatarColor} status={friend?.status} className="mr-3 w-8 h-8 shrink-0" />
@@ -37,7 +24,7 @@ const FriendItemTag = ({ friend, friendRequest }: Props) => {
         </div>
         <div className="text-h-secondary">
           <div className="whitespace-nowrap overflow-hidden text-btw-sm-xs font-medium">
-            {friend ? userStatusMap[friend?.status].desc : friendRequest && friendRequestMap[friendRequest?.requestStatus]}
+            {friend ? userStatusModel.label : friendRequest && friendRequestMap[friendRequest?.requestStatus]}
           </div>
         </div>
       </div>
