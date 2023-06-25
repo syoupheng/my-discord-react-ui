@@ -29,7 +29,7 @@ const MentionOptionItem = ({ mention, authUser, mentionSearch, active }: Props) 
     ReactEditor.focus(editor);
   };
   return (
-    <div onClick={onClick} className="pl-2 text-sm leading-4 font-medium" role="option">
+    <div onClick={onClick} className="px-2 text-sm leading-4 font-medium" role="option">
       <div className={`cursor-pointer rounded-[3px] p-2 hover:bg-mod-hov ${active ? "bg-mod-hov" : ""}`}>
         <div className="flex items-center text-h-secondary min-h-[16px]">
           <div className="shrink-0 grow-0 basis-auto mr-2">

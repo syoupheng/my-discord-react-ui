@@ -8,7 +8,7 @@ type Props = {
   mentions: ChannelMemberFragment[];
   arrowPosition: number;
   slateValue: Descendant[];
-}
+};
 
 const MentionsAutocomplete = ({ mentionSearch, mentions, arrowPosition, slateValue }: Props) => {
   const authUser = useAuthUserCache();
@@ -20,7 +20,7 @@ const MentionsAutocomplete = ({ mentionSearch, mentions, arrowPosition, slateVal
       style={{ bottom: `${8 + (1 + slateValue.length) * 22}px` }}
     >
       <div className="overflow-x-hidden overflow-y-scroll max-h-[490px] pr-0 pb-2 flex flex-col relative min-h-0 small-scroll-container">
-        <div className="rounded-[3px] p-2 pr-0">
+        <div className="rounded-[3px] p-2">
           <h3 className="uppercase py-1 text-h-secondary text-xs font-semibold">
             {mentionSearch.length > 0 ? (
               <>
