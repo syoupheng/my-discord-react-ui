@@ -1,5 +1,5 @@
 import UserAvatar from "@/components/shared/UserAvatar";
-import { FriendFragment, FriendRequestFragment, FriendRequestStatus, UserStatus } from "@/gql/graphql";
+import { FriendFragment, FriendRequestFragment, FriendRequestStatus } from "@/gql/graphql";
 import { userStatusFactory } from "@/models/user-status/user-status.factory";
 
 type Props = {
