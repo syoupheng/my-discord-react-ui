@@ -11,7 +11,7 @@ const UserProfilePopover = () => {
 
   return (
     <MyPopover className="overflow-hidden mr-2" style={{ minWidth: "100px" }}>
-      <MyPopover.Button className="flex items-center rounded hover:bg-grey-hov cursor-pointer focus:outline-none w-full">
+      <MyPopover.Button className="flex items-center rounded hover:bg-grey-hov cursor-pointer focus:outline-none w-full group">
         <UserPopoverButton {...authUser} />
       </MyPopover.Button>
       <MyPopover.Panel className="z-40 bg-secondary-alt rounded-md shadow-2xl animate-fade-in" style={{ width: "335px" }}>
