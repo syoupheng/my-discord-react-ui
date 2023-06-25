@@ -40,7 +40,7 @@ const MentionOptionItem = ({ mention, authUser, mentionSearch, active }: Props) 
             />
           </div>
           <div className="flex-auto ">
-            <div className=" text-white text-base leading-5 font-normal">{username}</div>
+            <div className=" text-white leading-5 font-medium text-sm">{username}</div>
           </div>
           <div className="grow-0 shrink-0 basis-auto ml-4 overflow-hidden whitespace-nowrap text-ellipsis font-normal text-xs">
             <span>{username}</span>
