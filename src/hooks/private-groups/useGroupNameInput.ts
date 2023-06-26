@@ -7,7 +7,7 @@ import { ERROR_MESSAGE } from "@/utils/apollo";
 
 export const editGroupNameInputSchema = z.object({
   groupId: z.number().int().positive(),
-  name: z.string().min(1).max(50),
+  name: z.string().min(1).max(500),
 });
 
 const useGroupNameInput = ({ id, name }: PrivateGroupFragment) => {

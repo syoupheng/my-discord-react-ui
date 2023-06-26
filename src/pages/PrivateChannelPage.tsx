@@ -21,7 +21,7 @@ const PrivateChannelPage = () => {
     <div className="min-h-0 min-w-0 flex relative flex-col overflow-hidden flex-auto">
       <PrivateChannelProvider channel={channelModel}>
         <DisplayGroupMembersProvider>
-          <PrivateChannelNav channel={channel} />
+          <PrivateChannelNav channel={channel} key={channelId} />
           <PrivateChannelContentContainer>
             <MessageItemScrollProvider>
               <ChatContent key={channelId} />
