@@ -17,8 +17,15 @@ type Props = {
 const FriendsContent = ({ selectedTab, friendTabModel }: Props) => {
   const [search, setSearch] = useState("");
   const lowercaseSearch = search.toLowerCase();
+
+  const containsSearch = (str: string) => {
+    const normalizedStr = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const normalizedSearch = lowercaseSearch.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return normalizedStr.toLowerCase().includes(normalizedSearch);
+  };
+
   const filteredFriendItems = (friendTabModel.listItems as any[]).filter(
-    (item: FriendFragment | FriendRequestFragment) => "username" in item && item.username.toLowerCase().includes(lowercaseSearch)
+    (item: FriendFragment | FriendRequestFragment) => "username" in item && containsSearch(item.username)
   );
   // selectedTab === "PENDING"
   //   ? friendRequests.filter((item) => item.username.toLowerCase().includes(lowercaseSearch))
