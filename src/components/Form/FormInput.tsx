@@ -16,6 +16,7 @@ const FormInput = forwardRef<HTMLInputElement, Props>(({ type = "text", name, la
     <>
       {label && (
         <label
+          data-testid={`label-${name}`}
           htmlFor={name}
           className={`uppercase text-xs font-bold mb-2 ${required && !error && "after:content-['*'] after:ml-1 after:text-red"} ${
             error || gqlError ? "text-danger" : "text-h-secondary"
