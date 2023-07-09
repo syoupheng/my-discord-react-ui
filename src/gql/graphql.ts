@@ -152,6 +152,7 @@ export type Mutation = {
   logout: SuccessResponse;
   markMessagesAsRead: Scalars['String'];
   register: AuthUser;
+  seedDatabase: Scalars['String'];
   sendFriendRequest: FriendRequest;
   sendMessage: Message;
   showConversation: PrivateConversation;

@@ -33,15 +33,6 @@ const WelcomeModal = () => {
                     nouvelles technologies. Have fun !
                   </li>
                   <FeatureItem
-                    icon={<FriendsIcon />}
-                    description={<>Tu peux envoyer des demandes d'amis grâce à leur nom d'utilisateur et tag discord (#0000).</>}
-                  />
-                  <FeatureItem
-                    icon={<HiUserGroup size={24} />}
-                    description={<>Crée des groupes de conversation privés et invite jusqu'à 9 amis par groupe.</>}
-                  />
-                  <FeatureItem icon={<MessageIcon />} description={<>Envoie et reçois des messages de la part de tes amis en temps réel !</>} />
-                  <FeatureItem
                     icon={<BiBot size={24} />}
                     description={
                       <>
@@ -50,6 +41,15 @@ const WelcomeModal = () => {
                       </>
                     }
                   />
+                  <FeatureItem
+                    icon={<FriendsIcon />}
+                    description={<>Tu peux envoyer des demandes d'amis grâce à leur nom d'utilisateur et tag discord (#0000).</>}
+                  />
+                  <FeatureItem
+                    icon={<HiUserGroup size={24} />}
+                    description={<>Crée des groupes de conversation privés et invite jusqu'à 9 amis par groupe.</>}
+                  />
+                  <FeatureItem icon={<MessageIcon />} description={<>Envoie et reçois des messages de la part de tes amis en temps réel !</>} />
                 </ol>
               </MyModal.Content>
             </div>
