@@ -1,5 +1,5 @@
 import { test as baseTest, expect, request } from "@playwright/test";
-import fs from "fs";
+// import fs from "fs";
 import path from "path";
 
 export * from "@playwright/test";
@@ -14,17 +14,11 @@ export const test = baseTest.extend<{}, { workerStorageState: string }>({
       const workerId = test.info().parallelIndex;
       const fileName = path.resolve(test.info().project.outputDir, `.auth/${workerId}.json`);
 
-      if (fs.existsSync(fileName)) {
-        // Reuse existing authentication state if any.
-        await use(fileName);
-        return;
-      }
-
       // Important: make sure we authenticate in a clean environment by unsetting storage state.
       const context = await request.newContext({ storageState: undefined });
 
       const query = /* GraphQL */ `
-        mutation Register($input: RegisterInput!) {
+        mutation Register($input: RegisterUserInput!) {
           register(registerUserInput: $input) {
             username
             email
@@ -34,6 +28,7 @@ export const test = baseTest.extend<{}, { workerStorageState: string }>({
 
       // Send authentication request. Replace with your own.
       const response = await context.post(process.env.VITE_API_URL || "http://localhost:3500/graphql", {
+        headers: { "Content-Type": "application/json" },
         data: JSON.stringify({
           query,
           variables: {

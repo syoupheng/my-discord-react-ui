@@ -26,7 +26,7 @@ const WelcomeModal = () => {
               <WelcomeToDiscord size={150} />
             </div>
             <div className="px-4">
-              <MyModal.Content centered title="Bienvenu sur mon clone de Discord !">
+              <MyModal.Content centered title="Bienvenue sur mon clone de Discord !">
                 <ol className=" text-h-secondary mt-4 overflow-hidden">
                   <li className="mb-4 font-medium">
                     Salut ! Je m'appelle <b>Syou-P'heng</b> et j'ai développé ce clone de l'application web de Discord pour m'amuser et découvrir de
