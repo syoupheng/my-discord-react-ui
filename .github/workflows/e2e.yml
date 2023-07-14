@@ -2,11 +2,10 @@ name: End-to-end Tests
 
 on:
   deployment_status:
-    branches: [staging]
 
 jobs:
   run-e2es:
-    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.ref_type == 'branch' && github.ref_name == 'staging'
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
