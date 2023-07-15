@@ -84,5 +84,5 @@ test("should successfully register the user", async ({ page }) => {
   await authForm.fillPassword("12345678");
   await authForm.submit();
   await expect(page).toHaveURL("/channels/@me");
-  await expect(page.getByText("Bienvenue sur mon clone de Discord !")).toBeVisible();
+  await expect(page.getByText("Bienvenue sur Discord-GPT !")).toBeVisible();
 });
