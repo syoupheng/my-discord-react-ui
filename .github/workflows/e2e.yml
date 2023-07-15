@@ -11,6 +11,7 @@ jobs:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    environment: 'Preview'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
