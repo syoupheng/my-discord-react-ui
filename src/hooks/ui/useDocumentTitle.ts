@@ -1,7 +1,7 @@
 import useAuthUser from "@/hooks/auth/useAuthUser";
 import { useEffect } from "react";
 
-const BASE_TITLE = "Discord-GPTlala";
+const BASE_TITLE = "Discord-GPT";
 
 const useDocumentTitle = (title: string) => {
   const { data } = useAuthUser();
