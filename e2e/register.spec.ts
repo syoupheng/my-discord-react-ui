@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { AuthForm } from "../playwright/auth-form";
+import { clearAndSeedDatabase } from "../playwright/setup";
 
 // test.use({ storageState: undefined });
 
@@ -9,6 +10,10 @@ test.beforeEach(async ({ page }) => {
   authForm = new AuthForm(page);
   await page.goto("/register");
   await expect(page).toHaveURL("/register");
+});
+
+test.afterAll(async ({ request }) => {
+  await clearAndSeedDatabase(request);
 });
 
 test.describe("email input validation", () => {
