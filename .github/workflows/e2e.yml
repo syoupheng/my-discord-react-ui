@@ -2,6 +2,9 @@ name: End-to-end Tests
 
 on:
   deployment_status:
+env:
+  VITE_API_URL: ${{ vars.VITE_API_URL }}
+  BASE_URL: ${{ vars.BASE_URL }}
 
 jobs:
   run-e2es:
