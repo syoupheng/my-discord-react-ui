@@ -18,7 +18,7 @@ setup("clear and then seed database", async ({ request }) => {
   expect(response.ok()).toBeTruthy();
   expect(await response.json()).toEqual({
     data: {
-      seedDatabase: "Database seeded",
+      seedDatabase: "🌱 Database seeded",
     },
   });
 });
