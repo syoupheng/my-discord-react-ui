@@ -1,5 +1,5 @@
 import { test as baseTest, expect, request } from "@playwright/test";
-// import fs from "fs";
+import fs from "fs";
 import path from "path";
 
 export * from "@playwright/test";
@@ -13,6 +13,12 @@ export const test = baseTest.extend<{}, { workerStorageState: string }>({
       // Use parallelIndex as a unique identifier for each worker.
       const workerId = test.info().parallelIndex;
       const fileName = path.resolve(test.info().project.outputDir, `.auth/${workerId}.json`);
+
+      if (fs.existsSync(fileName)) {
+        // Reuse existing authentication state if any.
+        await use(fileName);
+        return;
+      }
 
       // Important: make sure we authenticate in a clean environment by unsetting storage state.
       const context = await request.newContext({ storageState: undefined });
