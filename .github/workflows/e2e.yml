@@ -20,6 +20,10 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Check environment variables
+        run: |
+          echo "VITE_API_URL: $VITE_API_URL"
+          echo "BASE_URL: $BASE_URL"
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v3
