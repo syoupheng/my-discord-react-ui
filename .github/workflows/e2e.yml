@@ -13,11 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: "Preview"
     steps:
-      - name: Check github branch
-        run: |
-          echo "GITHUB_REF: $GITHUB_REF"
-          echo "GITHUB_HEAD_REF: $GITHUB_HEAD_REF"
-          echo "GITHUB_BASE_REF: $GITHUB_BASE_REF"
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
