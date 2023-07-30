@@ -3,8 +3,8 @@ name: End-to-end Tests
 on:
   deployment_status:
 env:
-  VITE_API_URL: ${{ vars.VITE_API_URL }}
-  BASE_URL: ${{ vars.BASE_URL }}
+  VITE_API_URL: ${{ secrets.VITE_API_URL }}
+  BASE_URL: ${{ secrets.BASE_URL }}
 
 jobs:
   run-e2es:
@@ -21,16 +21,12 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Check environment variables
+      - name: Run Playwright tests
         run: |
-          echo "VITE_API_URL: $VITE_API_URL"
-          echo "BASE_URL: $BASE_URL"
-      - name: Run Playwright tests on Google Chrome
-        run: npx playwright test --project=chromium
-      - name: Run Playwright tests on Mozilla Firefox
-        run: npx playwright test --project=firefox
+          npx playwright test --project=chromium
+          npx playwright test --project=firefox
       - uses: actions/upload-artifact@v3
-        if: always()
+        if: failure()
         with:
           name: playwright-report
           path: playwright-report/
