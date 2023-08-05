@@ -1,4 +1,4 @@
-# My Discord : React application
+# Discord-GPT : React application
 
 ## Introduction
 
