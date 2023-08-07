@@ -3,7 +3,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const config: CodegenConfig = {
-  schema: process.env.VITE_API_URL,
+  schema: "https://discord-gpt-gql-api-staging.fly.dev/graphql",
   documents: ["src/**/*.{ts, tsx}"],
   ignoreNoDocuments: true, // for better experience with the watcher
   generates: {
