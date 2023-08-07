@@ -22,4 +22,4 @@ All the dependencies required for this project can be installed with the `npm in
 
 ## Start the React application
 
-In order to launch the frontend application use the `npm run dev` command. Have fun 😊 !
+In order to launch the frontend application use the `npm run dev` command ! Have fun 😊 !
