@@ -5,7 +5,7 @@
       "destination": "/index.html"
     },
     {
-      "source": "/api/staging/graphql",
+      "source": "/api/staging/(.*)",
       "destination": "https://discord-gpt-gql-api-staging.fly.dev/graphql"
     }
   ]
