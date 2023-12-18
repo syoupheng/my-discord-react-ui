@@ -6,14 +6,14 @@ export async function clearAndSeedDatabase(request: APIRequestContext) {
       seedDatabase
     }
   `;
-  console.log("API_URL", process.env.VITE_API_URL);
-  console.log("BASE_URL", process.env.BASE_URL);
   const response = await request.post(process.env.VITE_API_URL ?? "http://localhost:3500/graphql", {
     headers: { "Content-Type": "application/json" },
     data: JSON.stringify({
       query,
     }),
   });
+
+  console.log("response", response);
 
   expect(response.ok()).toBeTruthy();
   expect(await response.json()).toEqual({
