@@ -25,6 +25,7 @@ jobs:
         run: |
           npx playwright test --project=chromium
           npx playwright test --project=firefox
+          npx playwright test --project=webkit
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
