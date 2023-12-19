@@ -1,11 +1,11 @@
 {
   "rewrites": [
     {
-      "source": "/api/staging/graphql",
+      "source": "/api/staging/(.*)",
       "destination": "https://discord-gpt-gql-api-staging.fly.dev/graphql"
     },
     {
-      "source": "/api/graphql",
+      "source": "/api/(.*)",
       "destination": "https://discord-gpt-gql-api-prod.fly.dev/graphql"
     },
     {
