@@ -13,8 +13,6 @@ export async function clearAndSeedDatabase(request: APIRequestContext) {
     }),
   });
 
-  console.log("response", response);
-
   expect(response.ok()).toBeTruthy();
   expect(await response.json()).toEqual({
     data: {
