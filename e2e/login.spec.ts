@@ -1,7 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { AuthForm } from "../playwright/auth-form";
-
-// test.use({ storageState: undefined });
+import { AuthForm } from "../playwright/page-object-models/auth-form.model";
 
 let authForm: AuthForm;
 

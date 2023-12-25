@@ -8,7 +8,7 @@ import useFindPrivateChannel from "@/hooks/private-channel/useFindPrivateChannel
 type Props = {
   count: number;
   channelId: number;
-}
+};
 
 const UnreadMessageNotificationItem = ({ count, channelId }: Props) => {
   const navigate = useNavigate();

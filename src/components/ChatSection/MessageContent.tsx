@@ -26,7 +26,11 @@ const stylesMapping = new Map<MessageContentType, { classes: string; styles: any
 
 const MessageContent = ({ messageContent, type = "normal" }: Props) => {
   return (
-    <div className={`${stylesMapping.get(type)?.classes} ml-[-72px] pl-[72px] overflow-hidden indent-0`} style={stylesMapping.get(type)?.styles}>
+    <div
+      data-testid="message-content"
+      className={`${stylesMapping.get(type)?.classes} ml-[-72px] pl-[72px] overflow-hidden indent-0`}
+      style={stylesMapping.get(type)?.styles}
+    >
       <LinkRenderer content={messageContent} />
     </div>
   );

@@ -17,11 +17,11 @@ type Props = {
 const ChatSlateEditor = ({ decorate, slateValue, handleKeyDown, isEmpty }: Props) => {
   const channel = usePrivateChannelContext();
   const renderLeaf = useCallback((props: RenderLeafProps) => <SlateLeaf {...props} />, []);
-  const renderElement = useCallback((props: { element: CustomElement; attributes: any}) => {
+  const renderElement = useCallback((props: { element: CustomElement; attributes: any }) => {
     if (isMentionElement(props.element)) {
-      return <MentionElement {...props as {element: TMentionElement; attributes: any}} />
+      return <MentionElement {...(props as { element: TMentionElement; attributes: any })} />;
     } else {
-      return <DefaultElement {...props} />
+      return <DefaultElement {...props} />;
     }
   }, []);
 
@@ -45,6 +45,7 @@ const ChatSlateEditor = ({ decorate, slateValue, handleKeyDown, isEmpty }: Props
         </div>
       )}
       <Editable
+        data-testId="chat-editor"
         onKeyDown={handleKeyDown}
         renderElement={renderElement}
         renderLeaf={renderLeaf}

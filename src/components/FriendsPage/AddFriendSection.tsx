@@ -62,7 +62,11 @@ const AddFriendSection = () => {
               Bravo ! Ta demande d'ami a été envoyée à <span className="font-bold">{success}</span>.
             </div>
           ) : (
-            !!error && <div className="text-danger cursor-default text-sm mt-2">{error}</div>
+            !!error && (
+              <div className="text-danger cursor-default text-sm mt-2" data-testid="friend-request-error">
+                {error}
+              </div>
+            )
           )}
         </form>
       </header>

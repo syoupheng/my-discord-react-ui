@@ -1,26 +1,27 @@
 import Spinner from "@/components/shared/Spinner";
 import TooltipWrapper from "@/components/shared/TooltipWrapper";
-import { ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 
-type THoverColor = "normal" | "red" | "green";
-
-const hoverColorMap: Record<THoverColor, string> = {
+const hoverColorMap = {
   normal: "hover:text-secondary-light",
   red: "hover:text-red",
   green: "hover:text-positive",
-};
+} as const;
 
-type Props = {
+type THoverColor = keyof typeof hoverColorMap;
+
+type Props = Omit<ComponentProps<"button">, "onClick"> & {
   icon: ReactNode;
   description?: string;
   hoverColor?: THoverColor;
   action?: any;
-  isLoading?: boolean
+  isLoading?: boolean;
 };
 
-const FriendActionBtn = ({ icon, description = "", hoverColor = "normal", action, isLoading = false }: Props) => {
+const FriendActionBtn = ({ icon, description = "", hoverColor = "normal", action, isLoading = false, ...props }: Props) => {
   return (
     <button
+      {...props}
       onClick={(e) => {
         e.stopPropagation();
         action();
@@ -36,7 +37,9 @@ const FriendActionBtn = ({ icon, description = "", hoverColor = "normal", action
           <div className="opacity-50">
             <Spinner white size="sm" />
           </div>
-        ) : icon}
+        ) : (
+          icon
+        )}
       </TooltipWrapper>
     </button>
   );

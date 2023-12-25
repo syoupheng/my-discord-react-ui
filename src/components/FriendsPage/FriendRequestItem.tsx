@@ -18,25 +18,20 @@ const FriendRequestItem = ({ friendRequest }: Props) => {
   const [confirmRequest, { loading: confirming }] = useConfirmFriend();
 
   return (
-    <FriendItemContainer>
+    <FriendItemContainer data-testid="friend-request">
       <FriendItemTag friendRequest={friendRequest} />
       <div className="ml-2 flex">
         {friendRequest.requestStatus === "RECEIVED" ? (
           <>
             <FriendActionBtn
+              data-testid="accept-friend-request"
               action={() => confirmRequest({ variables: { friendId: friendRequest.id } })}
               icon={<ValidateIcon size={20} />}
               description="Accepter"
               hoverColor="green"
               isLoading={confirming}
             />
-            <FriendActionBtn
-              action={ignoreRequest}
-              icon={<CancelIcon />}
-              description="Ignorer"
-              hoverColor="red"
-              isLoading={ignoring}
-            />
+            <FriendActionBtn action={ignoreRequest} icon={<CancelIcon />} description="Ignorer" hoverColor="red" isLoading={ignoring} />
           </>
         ) : (
           <FriendActionBtn

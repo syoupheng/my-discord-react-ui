@@ -8,7 +8,7 @@ type Props = {
 const UnreadMessagesList = ({ countList }: Props) => {
   const [listRef] = useAutoAnimate<HTMLDivElement>({ duration: 200 });
   return (
-    <div ref={listRef}>
+    <div data-testid="message-notifications-list" ref={listRef}>
       {countList.map(([channelId, count]) => (
         <UnreadMessageNotificationItem key={channelId} channelId={channelId} count={count} />
       ))}

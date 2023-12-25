@@ -22,7 +22,7 @@ const MessageItem = forwardRef<HTMLDivElement, Props>(({ msg, isConsecutive = fa
   const isOptimisticResponse = typeof msg.id === "string" && msg.id === "temp-id";
   return (
     <MessageItemProvider message={msg}>
-      <li className="outline-none relative">
+      <li data-testid="message-item" className="outline-none relative">
         <div
           ref={ref}
           className={`${
