@@ -15,12 +15,14 @@ test.describe("New message", () => {
 
   test("should clear the text box after sending a message", async ({ senderPage }) => {
     await senderPage.sendMessage("Hello world!");
+    await expect(senderPage.getMessageByContent(/Hello world/)).toBeVisible();
     await expect(senderPage.chatTextbox).not.toHaveText("Hello world!");
   });
 
   test("should append messages at the bottom of the chat", async ({ senderPage, receiverPage }) => {
     await senderPage.sendMessage("First message");
     await senderPage.sendMessage("Second message");
+    await expect(receiverPage.getMessageByContent(/Second message/)).toBeVisible();
     await expect(receiverPage.messageItems.last()).toHaveText(/Second message/);
     await expect(senderPage.messageItems.last()).toHaveText(/Second message/);
   });
@@ -61,7 +63,6 @@ test.describe("Message notifications", () => {
   test.beforeEach(async ({ senderPage, receiverPage }) => {
     await senderPage.goToChat();
     await receiverPage.goToChat();
-    await expect(receiverPage.chatMessagesList).toBeVisible();
     await receiverPage.page.goto("/channels/@me");
     await expect(receiverPage.friendsPageContent).toBeVisible();
     await expect(receiverPage.messageNotificationFromSender).not.toBeVisible();

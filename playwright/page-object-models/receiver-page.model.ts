@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page, expect } from "@playwright/test";
 import { UserPage } from "./user-page.model";
 
 export class ReceiverPage extends UserPage {
@@ -15,5 +15,6 @@ export class ReceiverPage extends UserPage {
       .getByTestId("message-room-list")
       .getByText(/sender/)
       .click();
+    await expect(this.chatMessagesList).toBeVisible();
   }
 }

@@ -13,7 +13,7 @@ export class UserPage {
     this.friendsPageContent = page.getByTestId("friends-page-content");
   }
 
-  getMessageByContent(message: string): Locator {
+  getMessageByContent(message: string | RegExp): Locator {
     return this.messageItems.filter({ hasText: message });
   }
 
