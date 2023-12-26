@@ -18,7 +18,8 @@ export class SenderPage extends UserPage {
   }
 
   async sendMessage(message: string) {
-    await this.chatTextbox.fill(message);
+    await this.chatTextbox.click();
+    await this.chatTextbox.pressSequentially(message);
     await this.chatTextbox.press("Enter");
   }
 }
