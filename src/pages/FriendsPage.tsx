@@ -9,7 +9,7 @@ const FriendsPage = () => {
     <div className="flex flex-col w-full overflow-hidden">
       <FriendsNav />
       <div className="flex h-full relative">
-        <div className="flex flex-col flex-auto overflow-hidden">
+        <div data-testid="friends-page-content" className="flex flex-col flex-auto overflow-hidden">
           <FriendsPageContent />
         </div>
         <FriendsRightSidebar />

@@ -3,8 +3,14 @@ import { Locator, Page } from "@playwright/test";
 export class UserPage {
   readonly messageItems: Locator;
 
+  readonly chatMessagesList: Locator;
+
+  readonly friendsPageContent: Locator;
+
   constructor(public readonly page: Page) {
     this.messageItems = page.getByTestId("message-item");
+    this.chatMessagesList = page.getByTestId("chat-messages-list");
+    this.friendsPageContent = page.getByTestId("friends-page-content");
   }
 
   getMessageByContent(message: string): Locator {

@@ -49,7 +49,10 @@ const ChatContent = () => {
           >
             <LoadingMessagesSkeleton className="absolute inset-0" show={loadingMessages && messages.length === 0} />
             {messagesData && (
-              <ol className="flex flex-col min-h-0 overflow-hidden list-none justify-end items-stretch relative animate-fade-in-slow">
+              <ol
+                data-testid="chat-messages-list"
+                className="flex flex-col min-h-0 overflow-hidden list-none justify-end items-stretch relative animate-fade-in-slow"
+              >
                 {!messagesData.getMessages.cursor ? <ChatContentHeader /> : <LoadingMessagesSkeleton ref={infiniteScrollDivRef} />}
                 <ChatMessagesList messages={messages} oldestUnreadMessage={oldestUnreadMessage} newMessagesRef={newMessagesRef} />
               </ol>

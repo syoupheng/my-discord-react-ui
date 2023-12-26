@@ -61,8 +61,9 @@ test.describe("Message notifications", () => {
   test.beforeEach(async ({ senderPage, receiverPage }) => {
     await senderPage.goToChat();
     await receiverPage.goToChat();
+    await expect(receiverPage.chatMessagesList).toBeVisible();
     await receiverPage.page.goto("/channels/@me");
-    await expect(receiverPage.page).toHaveURL("/channels/@me");
+    await expect(receiverPage.friendsPageContent).toBeVisible();
     await expect(receiverPage.messageNotificationFromSender).not.toBeVisible();
 
     // Send a message to the receiver
