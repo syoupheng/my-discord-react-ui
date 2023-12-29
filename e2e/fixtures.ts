@@ -21,7 +21,7 @@ export const test = baseTest.extend<MyFixtures, { workerStorageState: string }>(
     async ({ browser }, use) => {
       // Use parallelIndex as a unique identifier for each worker.
       const workerId = test.info().parallelIndex;
-      const fileName = path.resolve(test.info().project.outputDir, `.auth/${workerId}.json`);
+      const fileName = `.auth/${workerId}.json`;
 
       console.log(`Authenticating worker ${workerId}...`);
       // Important: make sure we authenticate in a clean environment by unsetting storage state.
@@ -44,14 +44,14 @@ export const test = baseTest.extend<MyFixtures, { workerStorageState: string }>(
   ],
 
   senderPage: async ({ browser }, use) => {
-    const context = await browser.newContext({ storageState: "playwright/.auth/sender.json" });
+    const context = await browser.newContext({ storageState: ".auth/sender.json" });
     const senderPage = new SenderPage(await context.newPage());
     await use(senderPage);
     await context.close();
   },
 
   receiverPage: async ({ browser }, use) => {
-    const context = await browser.newContext({ storageState: "playwright/.auth/receiver.json" });
+    const context = await browser.newContext({ storageState: ".auth/receiver.json" });
     const receiverPage = new ReceiverPage(await context.newPage());
     await use(receiverPage);
     await context.close();

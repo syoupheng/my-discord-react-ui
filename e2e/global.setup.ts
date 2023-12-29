@@ -8,8 +8,8 @@ setup("clear and then seed database", async ({ request }) => {
   await clearAndSeedDatabase(request);
 });
 
-const senderFile = "playwright/.auth/sender.json";
-const receiverFile = "playwright/.auth/receiver.json";
+const senderFile = ".auth/sender.json";
+const receiverFile = ".auth/receiver.json";
 
 setup("create user accounts to test real-time interaction", async ({ request, page }) => {
   console.log("Creating user accounts...");

@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Move to e2e directory
+        run: cd e2e
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers

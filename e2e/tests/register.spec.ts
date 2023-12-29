@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { AuthForm } from "../playwright/page-object-models/auth-form.model";
+import { AuthForm } from "../page-object-models/auth-form.model";
 
 let authForm: AuthForm;
 

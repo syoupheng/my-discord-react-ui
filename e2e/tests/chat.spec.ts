@@ -1,4 +1,4 @@
-import { expect, test } from "../playwright/fixtures";
+import { expect, test } from "../fixtures";
 
 test.describe("New message", () => {
   test.beforeEach(async ({ senderPage, receiverPage }) => {

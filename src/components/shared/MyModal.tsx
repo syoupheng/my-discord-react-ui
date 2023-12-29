@@ -74,13 +74,13 @@ type ModalControlsProps = PropsWithChildren & {
   alignment?: Alignment;
 };
 
-type Alignment = "center" | "left" | "right";
-
-const Alignment: Record<Alignment, string> = {
+const Alignment = {
   center: "justify-center",
   left: "justify-start",
   right: "justify-end",
-};
+} as const satisfies Record<string, string>;
+
+type Alignment = keyof typeof Alignment;
 
 MyModal.Controls = ({ children, alignment = "right" }: ModalControlsProps) => {
   return <div className={`p-4 flex bg-secondary rounded-b ${Alignment[alignment]}`}>{children}</div>;
