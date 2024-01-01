@@ -1,4 +1,3 @@
-import { MessageFragment } from "@/gql/graphql";
 import dayjs from "dayjs";
 import locale from "dayjs/locale/fr";
 import localizedFormat from "dayjs/plugin/localizedFormat";
@@ -8,7 +7,7 @@ dayjs.locale(locale);
 
 export const formatToDayMonthYear = (isoDate: string) => dayjs(isoDate).format("D MMMM YYYY");
 
-const isYesterday = (isoDate: string): boolean => {
+export const isYesterday = (isoDate: string): boolean => {
   const date = dayjs(isoDate);
   const timeToNow = dayjs().diff(date, "day");
   if (timeToNow >= 2) return false;
@@ -29,7 +28,7 @@ export const formatMessageDate = (isoDate: string) => {
 
 export const formatOldestNewMessageDate = (isoDate: string) => {
   const creationDate = dayjs(isoDate);
-  let formattedDate = `le ${creationDate.format("dddd D MM")} à ${creationDate.format("HH:mm")}`;
+  let formattedDate = `le ${creationDate.format("dddd D MMMM")} à ${creationDate.format("HH:mm")}`;
   const timeToNow = dayjs().diff(dayjs(isoDate), "day");
   if (timeToNow < 1 && dayjs().day() === creationDate.day()) {
     formattedDate = creationDate.format("HH:mm");
@@ -41,11 +40,16 @@ export const formatUserSubscribeDate = (isoDate: string) => dayjs(isoDate).forma
 
 export const getMinutesDiff = (date1: string, date2: string) => dayjs(date1).diff(date2, "minute");
 
-export const isMessageConsecutive = (currentMessage: MessageFragment, previousMessage: MessageFragment): boolean => {
+type MessageInfo = {
+  createdAt: string;
+  authorId: number;
+};
+
+export const isMessageConsecutive = (currentMessage: MessageInfo, previousMessage: MessageInfo): boolean => {
   if (!previousMessage) return false;
-  const { author, createdAt } = currentMessage;
-  const { author: previousAuthor, createdAt: previousPubDate } = previousMessage;
-  return previousAuthor === author && getMinutesDiff(createdAt, previousPubDate) < 2;
+  const { authorId, createdAt } = currentMessage;
+  const { authorId: previousAuthorId, createdAt: previousPubDate } = previousMessage;
+  return previousAuthorId === authorId && getMinutesDiff(createdAt, previousPubDate) < 2;
 };
 
 export const formatTimestamp = (isoDate: string) => dayjs(isoDate).format("HH:mm");

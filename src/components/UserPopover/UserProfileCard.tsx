@@ -5,15 +5,17 @@ import { UserStatus } from "@/gql/graphql";
 import { formatUserSubscribeDate } from "@/utils/dates";
 
 type Props = {
+  id: number;
   avatarColor: string;
   status: UserStatus;
   username: string;
+  phoneNumber?: string | null;
   discriminator: string;
   createdAt: string;
   closePopover: PopoverCloseFunction;
 };
 
-const UserProfileCard = ({ avatarColor, status, username, discriminator, createdAt, closePopover }: Props) => {
+const UserProfileCard = ({ id, avatarColor, status, username, phoneNumber, discriminator, createdAt, closePopover }: Props) => {
   return (
     <div>
       <div className="h-14 mb-8 min-w-[335px] rounded-t-md relative" style={{ backgroundColor: avatarColor }}>
@@ -32,7 +34,7 @@ const UserProfileCard = ({ avatarColor, status, username, discriminator, created
               <div className="text-white uppercase font-bold text-xs mb-2">Membre Discord depuis</div>
               <div className="text-secondary-light text-btw-sm-xs">{formatUserSubscribeDate(createdAt)}</div>
             </div>
-            <UserStatusSelection closePopover={closePopover} userStatus={status} />
+            <UserStatusSelection closePopover={closePopover} userInfo={{ id, username, status, phoneNumber }} />
           </div>
         </div>
       </div>

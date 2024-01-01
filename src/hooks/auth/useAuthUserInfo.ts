@@ -10,7 +10,7 @@ export const GET_AUTH_USER_INFO = graphql(`
 `);
 
 const useAuthUserInfo = () => {
-  const { data } = useQuery(GET_AUTH_USER_INFO, { fetchPolicy: "cache-only" });
+  const { data } = useQuery(GET_AUTH_USER_INFO, { fetchPolicy: "cache-first" });
   if (!data) throw new Error("This hook should be called in the authenticated part of the app");
   return data.me;
 };

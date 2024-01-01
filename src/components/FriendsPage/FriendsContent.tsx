@@ -27,6 +27,7 @@ const FriendsContent = ({ selectedTab, friendTabModel }: Props) => {
   const filteredFriendItems = (friendTabModel.listItems as any[]).filter(
     (item: FriendFragment | FriendRequestFragment) => "username" in item && containsSearch(item.username)
   );
+
   // selectedTab === "PENDING"
   //   ? friendRequests.filter((item) => item.username.toLowerCase().includes(lowercaseSearch))
   //   : selectedFriends.filter((item) => item.username.toLowerCase().includes(lowercaseSearch));

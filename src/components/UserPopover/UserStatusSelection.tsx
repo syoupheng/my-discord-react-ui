@@ -1,12 +1,11 @@
 import { offset, shift, useFloating } from "@floating-ui/react-dom";
 import { useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
-import { UserStatus } from "@/gql/graphql";
+import { GetAuthUserInfoQuery, UserStatus } from "@/gql/graphql";
 import { PopoverCloseFunction } from "@/components/shared/MyPopover";
 import useEditProfile from "@/hooks/user/useEditProfile";
 import UserStatusIcon from "@/components/shared/UserStatusIcon";
 import StatusSelectionItem from "@/components/UserPopover/StatusSelectionItem";
-import useAuthUserInfo from "@/hooks/auth/useAuthUserInfo";
 
 type UserStatusMapValue = {
   label: string;
@@ -45,14 +44,16 @@ const userStatusMap = new Map<UserStatus, UserStatusMapValue>([
 ]);
 
 type Props = {
-  userStatus: UserStatus;
+  userInfo: Pick<GetAuthUserInfoQuery["me"], "id" | "username" | "phoneNumber" | "status">;
   closePopover: PopoverCloseFunction;
 };
 
-const UserStatusSelection = ({ userStatus, closePopover }: Props) => {
+const UserStatusSelection = ({ userInfo, closePopover }: Props) => {
   const [showSelect, setShowSelect] = useState(false);
   const [editProfile] = useEditProfile();
-  const { id, username, phoneNumber } = useAuthUserInfo();
+  // const { id, username, phoneNumber } = useAuthUserInfo();
+
+  const { id, username, phoneNumber, status: userStatus } = userInfo;
 
   const selectUserStatus = (userStatus: UserStatus) => {
     editProfile({
@@ -81,6 +82,7 @@ const UserStatusSelection = ({ userStatus, closePopover }: Props) => {
   return (
     <div ref={reference} className="border-t border-grey-border py-2">
       <div
+        data-testid="user-status-selection"
         onMouseOver={() => setShowSelect(true)}
         onMouseLeave={() => setShowSelect(false)}
         className="flex justify-between text-h-secondary hover:text-white items-center hover:bg-blue p-2 rounded-sm cursor-pointer group"
@@ -104,7 +106,7 @@ const UserStatusSelection = ({ userStatus, closePopover }: Props) => {
             className="pl-6 bg-transparent cursor-default"
           >
             <div className="bg-tertiary rounded-sm p-2 z-50 shadow-2xl">
-              <ul className="w-72">
+              <ul data-testid="user-status-list" className="w-72">
                 {[...userStatusMap].map(([userStatus, { label, description }]) => (
                   <StatusSelectionItem
                     key={userStatus}

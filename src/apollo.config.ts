@@ -7,7 +7,11 @@ import { toast } from "react-hot-toast";
 import { ReadFieldFunction } from "@apollo/client/cache/core/types/common";
 import { getMillisecondsDiff } from "@/utils/dates";
 
-const httpLink = new HttpLink({ uri: import.meta.env.VITE_API_URL, credentials: "include" });
+const httpLink = new HttpLink({
+  uri: import.meta.env.VITE_API_URL,
+  credentials: "include",
+  fetch: (...args) => fetch(...args),
+});
 
 const wsLink = new GraphQLWsLink(createClient({ url: import.meta.env.VITE_SUBSCRIPTION_URL }));
 

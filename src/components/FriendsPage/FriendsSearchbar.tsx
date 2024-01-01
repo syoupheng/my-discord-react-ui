@@ -6,7 +6,7 @@ import { ChangeEvent, useRef, useState } from "react";
 type Props = {
   search: string;
   handleChange: (search: string) => void;
-}
+};
 
 const FriendsSearchbar = ({ search, handleChange }: Props) => {
   const isDirty = useRef(false);
@@ -34,6 +34,8 @@ const FriendsSearchbar = ({ search, handleChange }: Props) => {
           onChange={onChange}
         />
         <div
+          role="button"
+          aria-label={search === "" ? "Rechercher" : "Effacer la recherche"}
           onClick={search !== "" ? () => handleChange("") : undefined}
           className={`h-8 w-8 flex items-center justify-center ${search === "" ? "cursor-text" : "cursor-pointer"}`}
         >

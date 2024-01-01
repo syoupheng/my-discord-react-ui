@@ -40,7 +40,15 @@ const ChatMessagesList = ({ messages, oldestUnreadMessage, newMessagesRef }: Pro
             }}
             msg={msg}
             isRepliedTo={msg.id === replyMessageId}
-            isConsecutive={idx > 0 && isMessageConsecutive(msg, messages[idx - 1]) && !msg.referencedMessage && !isOldestUnreadMessage(msg)}
+            isConsecutive={
+              idx > 0 &&
+              isMessageConsecutive(
+                { createdAt: msg.createdAt, authorId: msg.author.id },
+                { createdAt: messages[idx - 1].createdAt, authorId: messages[idx - 1].author.id }
+              ) &&
+              !msg.referencedMessage &&
+              !isOldestUnreadMessage(msg)
+            }
           />
         </Fragment>
       ))}
