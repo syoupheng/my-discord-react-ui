@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "codegen": "graphql-codegen -w",
     "test": "vitest",
-    "test:ci": "vitest --run --reporter=verbose --reporter=html"
+    "test:ci": "vitest --run --reporter=default --reporter=html"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
