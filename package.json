@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "concurrently \"npm:start:dev\" \"npm:codegen\"",
     "start:dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && \"npm:test:ci\" && vite build",
     "preview": "vite preview",
     "codegen": "graphql-codegen -w",
-    "test": "vitest"
+    "test": "vitest",
+    "test:ci": "vitest --run --reporter=html"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
@@ -43,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
     "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^0.34.6",
     "autoprefixer": "^10.4.13",
     "concurrently": "^7.6.0",
     "eslint": "^8.42.0",

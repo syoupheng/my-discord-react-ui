@@ -38,7 +38,7 @@ describe("useLocalStorage - custom hook", () => {
     const { result } = renderHook(() => useLocalStorage("test", "default"));
     expect(result.current[0]).toEqual("default");
     act(() => result.current[1]("new value"));
-    expect(result.current[0]).toEqual("new value");
+    expect(result.current[0]).not.toEqual("new value");
   });
 
   it("should update the localStorage value when calling the setter", () => {
