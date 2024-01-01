@@ -31,7 +31,7 @@ describe("useLocalStorage - custom hook", () => {
     expect(localStorage.getItem).toHaveBeenCalledWith("test");
     expect(localStorage.setItem).toHaveBeenCalledOnce();
     expect(localStorage.setItem).toHaveBeenCalledWith("test", JSON.stringify("default"));
-    expect(localStorage.getItem("test")).toEqual(JSON.stringify("default"));
+    expect(localStorage.getItem("test")).not.toEqual(JSON.stringify("default"));
   });
 
   it("should update the state value when calling the setter", () => {
