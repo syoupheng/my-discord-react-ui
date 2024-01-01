@@ -3,8 +3,8 @@ import { useEffect, useRef } from "react";
 type Params = {
   isLoading: boolean;
   onTimeout: (...args: any[]) => any;
-  timeout?: number
-}
+  timeout?: number;
+};
 
 const DEFAULT_TIMEOUT = 20000;
 
@@ -12,15 +12,15 @@ const useRequestTimeout = ({ isLoading, onTimeout, timeout = DEFAULT_TIMEOUT }: 
   const currentTimeout = useRef<number>();
   useEffect(() => {
     if (isLoading) {
-      currentTimeout.current = setTimeout(onTimeout, timeout)
+      currentTimeout.current = setTimeout(onTimeout, timeout);
     } else {
       clearTimeout(currentTimeout.current);
     }
 
     return () => {
       clearTimeout(currentTimeout.current);
-    }
-  }, [isLoading])
-}
- 
+    };
+  }, [isLoading]);
+};
+
 export default useRequestTimeout;
