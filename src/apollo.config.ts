@@ -16,7 +16,7 @@ const httpLink = new HttpLink({
 const wsLink = new GraphQLWsLink(createClient({ url: import.meta.env.VITE_SUBSCRIPTION_URL || "ws://localhost:3500/graphql" }));
 
 const errorLink = onError(({ networkError }) => {
-  if (networkError) {
+  if (networkError && import.meta.env.VITE_ENV !== "test") {
     toast.error("Problème de connexion...", { id: "network-error" });
     throw new Error("Network error...");
   }
