@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"npm:start:dev\" \"npm:codegen\"",
     "start:dev": "vite",
-    "build": "tsc && \"npm run test:ci\" && vite build",
+    "build": "tsc && npm run test:ci && vite build",
     "preview": "vite preview",
     "codegen": "graphql-codegen -w",
     "test": "vitest",
