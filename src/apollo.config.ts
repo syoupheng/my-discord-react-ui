@@ -8,12 +8,12 @@ import { ReadFieldFunction } from "@apollo/client/cache/core/types/common";
 import { getMillisecondsDiff } from "@/utils/dates";
 
 const httpLink = new HttpLink({
-  uri: import.meta.env.VITE_API_URL ?? "http://localhost:3500/graphql",
+  uri: import.meta.env.VITE_API_URL || "http://localhost:3500/graphql",
   credentials: "include",
   fetch: (...args) => fetch(...args),
 });
 
-const wsLink = new GraphQLWsLink(createClient({ url: import.meta.env.VITE_SUBSCRIPTION_URL ?? "ws://localhost:3500/graphql" }));
+const wsLink = new GraphQLWsLink(createClient({ url: import.meta.env.VITE_SUBSCRIPTION_URL || "ws://localhost:3500/graphql" }));
 
 const errorLink = onError(({ networkError }) => {
   if (networkError) {
